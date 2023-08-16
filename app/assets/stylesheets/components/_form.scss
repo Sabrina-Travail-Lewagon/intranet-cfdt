@@ -2,6 +2,7 @@
   width: 647px;
   height: 495px;
 }
+
 .form_login{
   display: flex;
   padding: 21px 34px;
@@ -31,4 +32,26 @@
 .form_login_header .fa-lock{
   font-size: 70px;
   color: #E75C21;
+}
+
+.signup{
+  width: 647px;
+  height: 495px;
+}
+
+.form_signup{
+  display: flex;
+  padding: 21px 34px;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid #DFDEDE;
+  background: #F9F9F9;
+
+  /* Drop Shadow/Medium */
+  box-shadow: 0px 12px 31px 0px rgba(124, 124, 124, 0.10);
+  margin-top: 50px;
 }
