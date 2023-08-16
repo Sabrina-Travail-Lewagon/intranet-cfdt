@@ -15,10 +15,18 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :role, :photo])
   end
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   private
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  # Methode pour gérer l'exéception 'Pundit::NotAuthorizedError'
+  def user_not_authorized
+    flash[:alert] = "Vous n'êtes pas autorisé à accéder à cette ressource"
+    redirect_to(request.referrer || root_path)
   end
 
 end

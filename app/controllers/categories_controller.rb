@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   def new
     @user = current_user
     @category = Category.new
+    authorize @category # Vérifie l'autorisation via Pundit
   end
 
   def create
