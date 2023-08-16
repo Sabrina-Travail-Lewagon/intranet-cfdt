@@ -13,8 +13,9 @@ class User < ApplicationRecord
   # before_validation définira automatiquement le rôle par défaut sur user avant de valider l'utilisateur.
   before_validation :set_default_role
 
-  enum role: [:user, :rh, :cse, :redacteur, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  enum role: { user: 0, cse: 1, rh: 2, redacteur: 3, admin: 4 }
+  after_initialize :set_default_role, if: :new_record?
+
   private
 
   # On va mettre le role user par défaut
