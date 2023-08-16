@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  ROLES = ['admin', 'user', 'rh', 'cse', 'redacteur'] # On stocke les rôles possibles
+  # ROLES = ['admin', 'user', 'rh', 'cse', 'redacteur'] # On stocke les rôles possibles
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,10 +13,15 @@ class User < ApplicationRecord
   # before_validation définira automatiquement le rôle par défaut sur user avant de valider l'utilisateur.
   before_validation :set_default_role
 
+  enum role: [:user, :rh, :cse, :redacteur, :admin]
+  after_initialize :set_default_role, :if => :new_record?
   private
 
   # On va mettre le role user par défaut
+  # def set_default_role
+  #   self.role ||= 'user'
+  # end
   def set_default_role
-    self.role ||= 'user'
+    self.role ||= :user
   end
 end
