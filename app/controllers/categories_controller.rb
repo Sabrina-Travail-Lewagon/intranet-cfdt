@@ -1,5 +1,9 @@
 class CategoriesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
+
   def index
+    @categories = policy_scope(Category)
+    @user = current_user
     @categories = Category.all.order('created_at DESC')
   end
 

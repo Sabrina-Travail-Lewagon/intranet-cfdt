@@ -4,6 +4,10 @@ class CategoryPolicy < ApplicationPolicy
     # def resolve
     #   scope.all
     # end
+    def resolve
+      scope.all
+    end
+
     def index?
       true
     end
