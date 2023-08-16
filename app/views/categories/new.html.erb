@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <h2>Ajouter une catégorie</h2>
+    <%= form_with model: @category do |f| %>
+      <%= f.label :nom %>
+      <%= f.text_field :nom %>
+      <%= f.submit "Créer", {class: "btn btn-primary"} %>
+    <% end %>
+  </div>
+</div>
