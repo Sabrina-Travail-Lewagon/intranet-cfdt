@@ -12,7 +12,26 @@ class ArticlesController < ApplicationController
     authorize @articles
   end
 
+  def new
+    @user = current_user
+    @article = Article.new
+    authorize @article
+  end
+
+  def create
+    @user = current_user
+    @article = Article.new(params_article)
+    authorize @article # Vérifie l'autorisation via Pundit
+    if @article.save
+      redirect_to  articles_path(@article), notice: 'Article créé!'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
+    @user = current_user
+    authorize @article
   end
 
   def edit
@@ -25,5 +44,10 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def params_article
+    params.require(:article).permit(:nom)
+
   end
 end

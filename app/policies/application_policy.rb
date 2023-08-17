@@ -9,7 +9,7 @@ class ApplicationPolicy
   end
 
   def index?
-    user.user?
+    user&.user? || user&.admin? || user&.rh?
   end
 
   def show?

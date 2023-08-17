@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <div class="row">
+    <h2>Rédiger un article</h2>
+    <%= form_with model: @article do |f| %>
+      <%= f.label :Titre %>
+      <%= f.text_field :title %>
+      <%= f.label :Contenu %>
+      <%= f.text_field :content %>
+      <%= f.submit "Enregistrer", {class: "btn btn-primary"} %>
+    <% end %>
+    <div>
+      <%= link_to categories_path, class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left"></i> Retour
+      <% end %>
+    </div>
+
+  </div>
+</div>
