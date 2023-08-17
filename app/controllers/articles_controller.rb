@@ -1,5 +1,10 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :destroy]
+  skip_before_action :authenticate_user!
+
   def index
+    @user = current_user
+    @articles = Article.all.order('created_at DESC')
   end
 
   def show
@@ -9,5 +14,11 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def set_article
+    @article = Article.find(params[:id])
   end
 end
