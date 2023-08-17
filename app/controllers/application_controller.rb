@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # Personnalisation de l'erreur, quand une catégorie recherchée n'existe pas
+  rescue_from ActiveRecord::RecordNotFound, with: :RecordNotFound # Appelle la methode RecordNotFound
 
   private
 
@@ -27,6 +29,11 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = "Vous n'êtes pas autorisé à accéder à cette ressource"
     redirect_to(request.referrer || root_path)
+  end
+
+  def RecordNotFound
+    flash[:alert] = "La catégorie demandée n'a pas été trouvée."
+    redirect_to categories_path
   end
 
 end

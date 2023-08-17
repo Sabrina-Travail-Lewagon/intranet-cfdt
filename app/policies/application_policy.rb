@@ -33,7 +33,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || user.rh? # Autorise admin ou rh à supprimer une catégorie
+    user.admin? # Autorise admin ou rh à supprimer une catégorie
   end
 
   class Scope

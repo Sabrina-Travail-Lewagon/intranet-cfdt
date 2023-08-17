@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
   <div class="row">
     <h2>Ajouter une catégorie</h2>
     <%= form_with model: @category do |f| %>
@@ -6,5 +6,11 @@
       <%= f.text_field :nom %>
       <%= f.submit "Créer", {class: "btn btn-primary"} %>
     <% end %>
+    <div>
+      <%= link_to categories_path, class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left"></i> Retour
+      <% end %>
+    </div>
+
   </div>
 </div>

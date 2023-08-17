@@ -5,7 +5,11 @@
   <div class="row">
     	<%= simple_form_for(@category) do |f| %>
         <%= f.input :nom %>
+        <%= link_to categories_path, class: "btn btn-primary" do %>
+          <i class="fas fa-arrow-left text-white"></i>
+        <% end %>
         <%= f.submit "Modifier", {class: "btn btn-primary"} %>
       <% end %>
+
   </div>
 </div>

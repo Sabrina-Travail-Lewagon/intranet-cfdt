@@ -53,7 +53,7 @@ class CategoriesController < ApplicationController
     authorize @category
     @category.destroy
     # On redirige vers la page index
-    redirect_to categories_path, status: :see_other
+    redirect_to categories_path, status: :see_other, :notice => "Catégorie supprimée!"
   end
 
   private
