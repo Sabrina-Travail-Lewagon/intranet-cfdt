@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
   def create
     @user = current_user
     @article = Article.new(params_article)
-    @article.user = current_user
+    @article.user = current_user # Pour éviter l'erreur l'user n'existe pas
     authorize @article # Vérifie l'autorisation via Pundit
     if @article.save
       redirect_to articles_path(@article), notice: 'Article créé!'
