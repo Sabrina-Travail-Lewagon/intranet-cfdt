@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'articles/index'
+  get 'articles/show'
+  get 'articles/edit'
+  get 'articles/destroy'
   devise_for :users
   # devise_for :users, controllers: { registrations: 'registrations'}
   root to: "pages#home"
