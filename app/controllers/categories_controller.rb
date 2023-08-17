@@ -10,6 +10,14 @@ class CategoriesController < ApplicationController
     authorize Category
   end
 
+  # pour afficher la liste des articles dans une catégorie donnée
+  def category_articles
+    @user = current_user
+    @category = Category.find(params[:id])
+    authorize Category
+    @articles = @category.articles
+  end
+
   def new
     @user = current_user
     @category = Category.new
