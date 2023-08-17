@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :user
+  validates :user, presence: true
   has_many :article_categories
   has_many :categories, through: :article_categories
   has_many :comments

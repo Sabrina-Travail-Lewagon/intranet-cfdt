@@ -8,5 +8,9 @@ class ArticlePolicy < ApplicationPolicy
     def index?
       true
     end
+
+    def create?
+      user.admin? || user.rh? # Autorise admin ou rh à créer une catégorie
+    end
   end
 end
