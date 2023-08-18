@@ -3,6 +3,9 @@
     <h2><%= @article.title %></h2>
     <hr>
     <p><%= @article.rich_body %></p>
+    <% @article.images.each do |image| %>
+      <%= cl_image_tag image.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
     <div>
       <%= link_to articles_path, class: "btn btn-primary" do %>
         <i class="fas fa-arrow-left text-white"></i>
