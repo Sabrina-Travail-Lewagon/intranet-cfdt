@@ -1,20 +1,18 @@
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   before_action :category_find, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized
 
   def index
     @user = current_user
-    @categories = policy_scope(Category)
-    @categories = Category.all.order('created_at DESC')
-    authorize Category
+    @categories = policy_scope(Category).order('created_at DESC')
+    # @categories = Category.all.order('created_at DESC')
   end
 
   # pour afficher la liste des articles dans une catégorie donnée
   def category_articles
     @user = current_user
     @category = Category.find(params[:id])
-    authorize Category
+    authorize @category
     @articles = @category.articles
   end
 
@@ -35,18 +33,14 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
-    @user = current_user
-    authorize @category # Vérifie l'autorisation via Pundit
+    # On récupère l'id avec before_action
   end
 
   def edit
     # On récupère l'id avec before_action
-    authorize @category
   end
 
   def update
-    authorize @category
     @user = current_user
     if @category.update(category_params)
       redirect_to categories_path, :notice => "Catégorie a été mis à jour."
@@ -58,7 +52,6 @@ class CategoriesController < ApplicationController
   def destroy
     # On récupère l'id avec before_action
     # On supprime l'enregistrement avec l'id dans la BdD
-    authorize @category
     @category.destroy
     # On redirige vers la page index
     redirect_to categories_path, status: :see_other, :notice => "Catégorie supprimée!"
@@ -73,5 +66,6 @@ class CategoriesController < ApplicationController
   def category_find
     @category = Category.find(params[:id])
     @user = current_user
+    authorize @category
   end
 end

@@ -7,6 +7,7 @@
           <li class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1">
             <%= category.nom %>
             </li>
+            <% if policy(category).edit? %>
             <li class="list-group-item ps-3 pe-0 py-1">
               <div class="d-flex flex-row justify-content-end mb-1">
                 <%= link_to edit_category_path(category) do %>
@@ -19,12 +20,14 @@
 
               </div>
             </li>
-
+          <% end %>
 
         </ul>
     <% end %>
-    <%= link_to new_category_path do %>
-      <i class="fa-solid fa-plus mt-3"></i> Ajouter une catégorie
+    <% if policy(Category).create? %>
+      <%= link_to new_category_path do %>
+        <i class="fa-solid fa-plus mt-3"></i> Ajouter une catégorie
+      <% end %>
     <% end %>
   </div>
 </div>
