@@ -4,13 +4,13 @@ class ArticlePolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
-    def index?
-      true
-    end
+  def index?
+    true
+  end
 
-    def create?
-      user.admin? || user.rh? # Autorise admin ou rh à créer une catégorie
-    end
+  def create?
+    user.admin? || user.rh? # Autorise admin ou rh à créer une catégorie
   end
 end

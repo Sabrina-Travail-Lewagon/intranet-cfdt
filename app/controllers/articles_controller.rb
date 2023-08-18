@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :destroy]
   skip_before_action :authenticate_user!
-  after_action :verify_authorized
+  # after_action :verify_authorized
 
   def index
     @user = current_user

@@ -9,15 +9,15 @@ class ApplicationPolicy
   end
 
   def index?
-    user&.user? || user&.admin? || user&.rh?
+    false
   end
 
   def show?
-    user.admin? || user.rh?
+    false
   end
 
   def create?
-    user.admin? || user.rh?
+    false
   end
 
   def new?
@@ -25,7 +25,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user.admin? || user.rh?
+    false
   end
 
   def edit?
@@ -33,7 +33,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    user.admin? # Autorise admin ou rh à supprimer une catégorie
+    false
   end
 
   class Scope
