@@ -10,7 +10,19 @@ class ArticlePolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    true
+  end
+
   def create?
     user.admin? || user.rh? # Autorise admin ou rh à créer une catégorie
+  end
+
+  def update?
+    user.admin? || user.rh? # Autorise admin ou rh à mettre à jour une catégorie
+  end
+
+  def destroy?
+    user.admin? || user.rh? # Autorise admin ou rh à supprimer une catégorie
   end
 end
