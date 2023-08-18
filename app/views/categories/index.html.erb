@@ -1,10 +1,13 @@
-<div class="container mt-4">
-  <div class="row">
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="row list-categories">
     <h2>Liste des catégories</h2>
     <hr>
     <% @categories.each do |category| %>
       	<ul class="list-group list-group-horizontal">
           <li class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1">
+            <% if category.image.attached? %>
+              <%= cl_image_tag category.image.key, class: "img-category-#{category.nom.parameterize}" %>
+            <% end %>
             <%= category.nom %>
             </li>
             <% if policy(category).edit? %>

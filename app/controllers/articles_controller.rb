@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :destroy]
+  before_action :set_article, only: [:show, :edit, :destroy, :update]
   skip_before_action :authenticate_user!
   # after_action :verify_authorized
 
@@ -33,8 +33,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @user = current_user
-    authorize @article
   end
 
   def edit
@@ -43,10 +41,20 @@ class ArticlesController < ApplicationController
   def destroy
   end
 
+  def update
+    if @article.update(params_article)
+      redirect_to articles_path, :notice => "Article mis à jour."
+    else
+      redirect_to articles_path, :alert => "Impossible de mettre à jour l'article."
+    end
+  end
+
   private
 
   def set_article
     @article = Article.find(params[:id])
+    @user = current_user # Pour que le header puisse s'afficher avec le login
+    authorize @article
   end
 
   def params_article
