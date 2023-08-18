@@ -5,6 +5,9 @@
     <% @categories.each do |category| %>
       	<ul class="list-group list-group-horizontal">
           <li class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1">
+            <% if category.image.attached? %>
+              <%= cl_image_tag category.image.key, class: "img-category-cse" %>
+            <% end %>
             <%= category.nom %>
             </li>
             <% if policy(category).edit? %>

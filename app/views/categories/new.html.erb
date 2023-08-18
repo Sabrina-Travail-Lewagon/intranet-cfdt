@@ -4,6 +4,7 @@
     <%= form_with model: @category do |f| %>
       <%= f.label :nom %>
       <%= f.text_field :nom %>
+      <%= f.file_field :image %>
       <%= f.submit "Créer", {class: "btn btn-primary"} %>
     <% end %>
     <div>

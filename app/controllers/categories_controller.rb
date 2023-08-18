@@ -60,7 +60,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:nom)
+    params.require(:category).permit(:nom, :image)
   end
 
   def category_find
