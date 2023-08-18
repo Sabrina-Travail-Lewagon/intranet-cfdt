@@ -4,8 +4,9 @@
     <%= form_with model: @article do |f| %>
       <%= f.label :Titre %>
       <%= f.text_field :title %>
-      <%= f.label :Contenu %>
-      <%= f.text_field :content %>
+      <div class="form-inputs">
+        <%= f.rich_text_area :rich_body %>
+      </div>
       <%= f.label :Categories %>
       <%= f.collection_select :category_ids, Category.all, :id, :nom, {}, { multiple: true } %>
       <%= f.submit "Enregistrer", {class: "btn btn-primary"} %>
