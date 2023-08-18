@@ -1,2 +1,12 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<div class="container mt-4">
+  <div class="row">
+    <h2><%= @article.title %></h2>
+    <hr>
+    <p><%= @article.content %></p>
+    <div>
+      <%= link_to articles_path, class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left text-white"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
