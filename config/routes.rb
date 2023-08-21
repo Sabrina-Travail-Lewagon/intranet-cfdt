@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'uploader/image'
   get 'articles/index'
   get 'articles/show'
   get 'articles/edit'
