@@ -2,10 +2,7 @@
   <div class="row">
     <h2><%= @article.title %></h2>
     <hr>
-    <p><%= @article.rich_body %></p>
-    <% @article.images.each do |image| %>
-      <%= cl_image_tag image.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
+    <p><%= raw @article.content %></p>
     <div>
       <%= link_to 'Edit', edit_article_path(@article) %> |
       <%= link_to 'Back', root_path %>
