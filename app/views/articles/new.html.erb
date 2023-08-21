@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row">
     <h2>Rédiger un article</h2>
-    <%= form_with model: @article do |f| %>
+    <%= form_with(model: @article, local: true) do |f| %>
       <%= f.label :Titre %>
       <%= f.text_field :title %>
       <div class="form-inputs">
