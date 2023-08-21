@@ -11,6 +11,15 @@
     <%= tinymce_assets %>
     <script type="text/javascript" src="/assets/tinymce.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key" referrerpolicy="origin"></script>
+      <script>
+        tinymce.init({
+          selector: 'textarea',  // Sélecteur pour cibler les zones de texte
+          plugins: 'image',
+          toolbar: 'image',
+          images_upload_url: '/uploader/image'  // URL vers votre contrôleur d'upload
+          // images_upload_credentials: true
+        });
+    </script>
   </head>
 
   <body>

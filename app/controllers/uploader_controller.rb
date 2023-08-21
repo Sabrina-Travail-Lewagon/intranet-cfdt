@@ -1,4 +1,5 @@
 class UploaderController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def image
     image_data = params[:file]
     # Utilisez le SDK Cloudinary pour envoyer l'image à Cloudinary
