@@ -30,4 +30,5 @@ plugins:
   - advlist
   - autolink
   - lists
-images_upload_url: '/uploader/image'
+# images_upload_url: '/uploader/image'
+images_upload_handler: "/uploader/image"
