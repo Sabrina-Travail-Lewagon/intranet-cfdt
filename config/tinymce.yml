@@ -1,0 +1,33 @@
+# config/tinymce.yml
+# height: 500
+# menubar: false
+# toolbar:
+#   - undo redo | blocks | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat | help | link image | code | uploadimage | table
+# plugins:
+#   - insertdatetime lists media table code help wordcount powerpaste media image uploadimage table
+# powerpaste_allow_local_images: true
+# powerpaste_word_import: 'clean'
+# powerpaste_html_import: 'clean'
+# powerpaste_googledocs_import: 'prompt'
+
+menubar: "insert view format table tools"
+toolbar:
+  - bold italic | link | alignleft aligncenter alignright | undo redo | forecolor backcolor | bullist numlist outdent indent | table | uploadimage | code | image
+plugins:
+  - table
+  - fullscreen
+  - image
+  - code
+  - searchreplace
+  - wordcount
+  - visualblocks
+  - visualchars
+  - link
+  - charmap
+  - directionality
+  - nonbreaking
+  - media
+  - advlist
+  - autolink
+  - lists
+images_upload_url: '/uploader/image'

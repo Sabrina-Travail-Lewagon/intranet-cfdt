@@ -5,10 +5,13 @@
       <%= f.label :Titre %>
       <%= f.text_field :title %>
       <div class="form-inputs">
-        <%= f.rich_text_area :rich_body %>
+        <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
+        <%= tinymce %>
       </div>
+      <div class="form-inputs">
       <%= f.label :Categories %>
       <%= f.collection_select :category_ids, Category.all, :id, :nom, {}, { multiple: true } %>
+      </div>
       <%= f.submit "Enregistrer", {class: "btn btn-primary"} %>
     <% end %>
     <div>
