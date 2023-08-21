@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'articles/show'
   get 'articles/edit'
   get 'articles/destroy'
+  post "/uploader/image", to: "uploader#image"
   devise_for :users
   # devise_for :users, controllers: { registrations: 'registrations'}
   root to: "pages#home"
