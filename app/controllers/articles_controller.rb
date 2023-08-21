@@ -26,7 +26,6 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to articles_path(@article), notice: 'Article créé!'
     else
-      console
       flash.now[:alert] = "Impossible de créer l'article."
       render :new, status: :unprocessable_entity
     end
@@ -39,13 +38,15 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    @article.destroy
+    redirect_to articles_path, notice: 'Article a bien été supprimé.'
   end
 
   def update
     if @article.update(params_article)
       redirect_to articles_path, :notice => "Article mis à jour."
     else
-      redirect_to articles_path, :alert => "Impossible de mettre à jour l'article."
+      render :edit, :alert => "Impossible de mettre à jour l'article."
     end
   end
 
@@ -58,7 +59,7 @@ class ArticlesController < ApplicationController
   end
 
   def params_article
-    params.require(:article).permit(:title, :rich_body)
+    params.require(:article).permit(:title, :rich_body, photos: [])
 
   end
 end
