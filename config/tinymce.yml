@@ -12,7 +12,7 @@
 
 menubar: "insert view format table tools"
 toolbar:
-  - bold italic | link | alignleft aligncenter alignright | undo redo | forecolor backcolor | bullist numlist outdent indent | table | uploadimage | code | image
+  - bold italic | link | alignleft aligncenter alignright | undo redo | forecolor backcolor | bullist numlist outdent indent | table | uploadimage | code | image | cloudinaryimage
 plugins:
   - table
   - fullscreen
@@ -30,4 +30,12 @@ plugins:
   - advlist
   - autolink
   - lists
+  - cloudinaryimage
 images_upload_url: '/uploader/image'
+
+cloudinary: {
+  apiKey: '198541366227656',
+  cloudName: 'dooup7bi2',
+  # uploadPreset: 'YOUR_UPLOAD_PRESET'
+}
+# images_upload_handler: "/uploader/image"
