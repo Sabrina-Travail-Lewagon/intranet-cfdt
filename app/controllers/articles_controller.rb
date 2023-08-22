@@ -20,7 +20,8 @@ class ArticlesController < ApplicationController
 
   def create
     @user = current_user
-    @article = Article.new(params_article)
+    sanitized_content = sanitize_content(params_article[:content])
+    @article = Article.new(params_article.merge(content: sanitized_content))
     @article.user = current_user # Pour éviter l'erreur l'user n'existe pas
     authorize @article # Vérifie l'autorisation via Pundit
     if @article.save
@@ -43,7 +44,8 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(params_article)
+    sanitized_content = sanitize_content(params_article[:content])
+    if @article.update(params_article.merge(content: sanitized_content))
       redirect_to articles_path, :notice => "Article mis à jour."
     else
       render :edit, :alert => "Impossible de mettre à jour l'article."
@@ -60,6 +62,14 @@ class ArticlesController < ApplicationController
 
   def params_article
     params.require(:article).permit(:title, :content, images: [], category_ids: [])
+  end
 
+  def sanitize_content(content)
+    allowed_tags = %w(a b i em u h1 h2 h3 h4 h5 h6 p img iframe br ul ol li video source)
+    # allowed_attributes: les attributs width et height que l'utilisateur définit dans l'éditeur de texte
+    # ne seront pas supprimés par sanitizer,
+    # et les images afficheront donc la taille que l'utilisateur a spécifiée
+    allowed_attributes = %w(href src alt target frameborder allowfullscreen type rel width height)
+    ActionController::Base.helpers.sanitize(content, tags: allowed_tags, attributes: allowed_attributes)
   end
 end
