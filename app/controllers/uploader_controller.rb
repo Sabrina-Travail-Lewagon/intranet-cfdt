@@ -1,8 +1,10 @@
 class UploaderController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
-  skip_before_action :verify_authorized
+  skip_before_action :verify_authorized, only: :image
+
   def image
+    @user = current_user # Pour que le header puisse s'afficher avec le login
     image_data = params[:file]
     # Utilisez le SDK Cloudinary pour envoyer l'image à Cloudinary
     cloudinary_response = Cloudinary::Uploader.upload(image_data)
