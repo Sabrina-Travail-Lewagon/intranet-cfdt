@@ -1,7 +1,8 @@
 class UploaderController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
-  skip_before_action :verify_authorized, only: :image
+  after_action :verify_authorized, except: :image
+  # before_action :verify_authorized
 
   def image
     @user = current_user # Pour que le header puisse s'afficher avec le login
